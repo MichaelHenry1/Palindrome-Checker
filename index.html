@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Unlock" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Palindrome Checker</title>
+    <link rel="stylesheet" href="style.css">
+
+    
+  </head>
+  <body>
+    <audio id="aud">
+      <source src="Wrong%20Buzzer%20-%20Sound%20Effect.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="cor">
+      <source src="Correct%20sound%20effect%20and%20wrong%20sound%20effect%20(mp3cut.net).mp3" type="audio/mpeg">
+    </audio>
+    
+    <center>
+    <input type="text" placeholder="Search" id="i">
+    <button onClick="palindrome()">Check</button>
+      <h1 id="hi"></h1>
+    </center>
+  <script>
+    var audio = document.getElementById("aud");
+    var aud = document.getElementById("cor");
+    var b = document.getElementById("i")
+    b.addEventListener("keyup", runScript);
+    
+    function runScript(e) {
+     
+      if (e.keyCode == 13) {
+        palindrome();
+      }
+    }
+
+  
+    function palindrome() {
+      // Good luck!
+      var code = b.value;
+      console.log(code)
+      code = code.toLowerCase();
+      var newstr = [];
+
+
+      var a = code.split("")
+
+      a = a.filter(x=> x.match(/[a-z]|[0-9]/));
+
+      for(var i = 0; i < a.length; i++){
+        newstr.unshift(a[i]);
+
+      }
+      console.log(a.join(''))
+      console.log(newstr.join(''))
+      if(a.join('') == newstr.join("")){
+        document.getElementById("hi").innerHTML = "True";
+        aud.play();
+        return 
+      }  
+
+      document.getElementById("hi").innerHTML = "False";
+      
+      audio.play()
+      return
+    }
+
+    </script>
+  </body>
+</html>
